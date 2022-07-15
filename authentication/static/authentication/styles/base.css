@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #e04c4c;
+}
+
+/* NAVBAR LOGO */
+#upper-logo {
+    height: 80px;
+}
+
+/* NAVBAR TEXT LOGO */
+.navbar-brand {
+    font-size: 40px !important;
+    font-family: 'Pacifico';
+    color: #e04c4c;
+}
+
+.navbar-brand:hover {
+    color: #e04c4c;
+}
+
+/* JUSTIFY-END NAVBAR */
+.nav-link, .nav-link:hover, a {
+    color: white;
+}
+
+/* AUTHENTICATION BUTTON */
+#left-button {
+    font-family: 'Manjari'; 
+    color: white; 
+    background-color: #e04c4c; 
+    margin-left: 300px;
+}
+
+#right-button {
+    font-family: 'Manjari'; 
+    color: white; 
+    background-color: #e04c4c; 
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* HOME */
+.opening {
+    display: flex;
+    margin: auto;
+}
+
+/* HOME TEXT */
+#header-h1 {
+    font-size: 85px;
+    margin-left: 50px;
+    margin-top: 200px;
+    font-family: 'Pacifico';
+    color: white;
+}
+
+/* HOME LOGO */
+#header-image img{
+    transition: 300ms;
+    position: relative;
+    height: 450px;
+    right: -85px;
+}
+  
+#header-image img:hover{
+    transform: rotate(-6deg);
+}
+
+h1, hr, p, ul, a, li, form {
+    color: white;
+}
+
+.btn {
+    background-color: white;
+    color: #e04c4c;
+    border: 0px;
+}
+
+.btn:hover {
+    background-color: #F0A0A0
+}

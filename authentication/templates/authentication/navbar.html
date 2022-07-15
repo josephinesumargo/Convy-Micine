@@ -1,0 +1,40 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'authentication/styles/base.css' %}" type="text/css">
+
+<nav class="navbar navbar-expand-lg bg-white">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}"><img id="upper-logo" src="{% static 'base/images/logobgw.png' %}" alt="">Convy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <form class="d-flex">
+        {% if user.is_authenticated %}
+            <a href="{% url 'signout' %}" class="btn" id="right-button" type="submit">SIGN OUT</a>
+        {% else %}
+            <a href="{% url 'signup' %}" class="btn" id="left-button" type="submit">SIGN UP</a>
+            <a href="{% url 'signin' %}" class="btn" id="right-button" type="submit">SIGN IN</a>
+        {% endif %}
+    </form>
+    </div>
+</nav>
+
+
+{% if user.is_authenticated %}
+<ul class="nav justify-content-end">
+    <li class="nav-item">
+        <a class="nav-link" href="#">Dashboard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Calendar</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Groups</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Meetings</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Tasks</a>
+    </li>
+</ul>
+{% endif %}
