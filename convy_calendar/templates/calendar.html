@@ -1,0 +1,19 @@
+<!-- done -->
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'css/calender.css' %}">
+{% endblock extracss %}
+
+{% block content %}
+<div class="clearfix">
+	<a class="btn btn-info right mr-2" href="{% url 'convy_calendar:calendars' %}?{{ next_month }} "> Next Month >> </a>
+    <a class="btn btn-info right mr-2" href="{% url 'convy_calendar:calendars' %}?{{ prev_month }}"> << Previous Month </a>
+    <a class="btn btn-info right mr-2" href="{% url 'convy_calendar:event_new' %}"> + New Event </a>
+</div>
+<div style="color: white;">
+    {{ calendar }}
+</div>
+{% endblock %}

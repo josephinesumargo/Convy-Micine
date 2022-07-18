@@ -20,14 +20,14 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy('authentication:home')
 
 # register
 class RegisterPage(FormView):
     template_name = 'authentication/register.html'
     form_class = RegisterUserForm
     redirect_authenticated_user = True
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('authentication:home')
     
     def form_valid(self, form):
         user = form.save()

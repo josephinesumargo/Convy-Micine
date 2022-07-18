@@ -72,7 +72,7 @@ body {
     transform: rotate(-6deg);
 }
 
-h1, hr, p, ul, a, li, form {
+h1, h3, hr, p, ul, a, li, form {
     color: white;
 }
 

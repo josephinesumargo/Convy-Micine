@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <link rel="stylesheet" href="{% static 'base/styles/main.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'authentication/styles/main.css' %}" type="text/css">
 
     <div class="register">
         <h1>Create Account</h1>
@@ -15,5 +15,5 @@
         </form>
     </div>
     <br>
-    <p>Already have an account? <a href="{% url 'signin' %}">SIGN IN</a></p>
+    <p>Already have an account? <a href="{% url 'authentication:signin' %}">SIGN IN</a></p>
 {% endblock %}
