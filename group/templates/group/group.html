@@ -1,0 +1,45 @@
+{% extends 'authentication/base.html' %}
+
+{% block content %}
+
+    <a href="{% url 'group:add-group' %}" class="add">&plus; Add Group</a>
+    <br> <br>
+    {% for group in groups %}
+    <div class="card" style="background-color: #F0A0A0">
+        <div class="card-body">
+            <div style="color: rgba(224, 76, 76, 0.56); font-size: 20px">
+                {{ group.category | upper }}<br>
+            </div>
+            <div style="color: white; font-size: 35px;">
+                {{group.title}} <br>
+            </div>
+            <div style="color: white; font-size: 20px;">
+                Members:
+                <ul>
+                {% for user in group.members.all %}
+                    <li>{{user}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <hr>
+            <div align="right">
+                <a href="{% url 'group:update-group' group.id %}" class="btn btn-outline-success">Update</a>
+                <a href="{% url 'group:delete-group' group.id %}" class="btn btn-outline-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <style>
+        .add {
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .add:hover {
+            color: white;
+        }
+    </style>
+    {% endfor %}
+
+{% endblock %}
