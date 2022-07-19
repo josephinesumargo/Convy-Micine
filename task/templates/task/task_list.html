@@ -1,0 +1,70 @@
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'authentication/styles/base.css' %}" type="text/css">
+
+    <h1>Tasks List</h1>
+    <hr>
+    <a href="{% url 'task:task-add' %}" style="text-decoration: 0; font-size: 20px;">&plus; Task</a>
+    <br> <br>
+    {% for task in task_list %}
+    <div class="task">
+        {% if task.complete %}
+        <div class="task-group">
+            <div class="complete-task-icon"></div>
+            <i><s style="color: white;"><a href="{% url 'task-update' task.id %}" id="heighten">{{ task }}</a></s></i>
+        </div>
+        <a href="{% url 'task:task-delete' task.id %}" align="right" id="delete">&#215;</a>
+        {% else %}
+        <div class="task-group">
+            <div class="incomplete-task-icon"></div>
+            <a href="{% url 'task:task-update' task.id %}" id="heighten">{{ task }}</a>
+        </div>
+        <a href="{% url 'task:task-delete' task.id %}" align="right" id="delete">&#215;</a>
+        {% endif %}
+    </div>
+    <br>
+    {% endfor %}
+
+    <style>
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .complete-task-icon {
+            width: 18px;
+            height: 18px;
+            background-color: #F0A0A0;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .incomplete-task-icon {
+            height: 18px;
+            width: 18px;
+            border: 1px solid #F0A0A0;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        #heighten {
+            text-decoration: none;
+        }
+
+        #delete {
+            text-decoration: none;
+            font-size: 30px;
+        }
+
+        a:hover {
+            color: white;
+        }
+    </style>
+{% endblock %}

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'authentication',
     'convy_calendar',
+    # 'meeting',
+    'task',
 ]
 
 MIDDLEWARE = [
