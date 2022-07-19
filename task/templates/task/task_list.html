@@ -15,7 +15,7 @@
         {% if task.complete %}
         <div class="task-group">
             <div class="complete-task-icon"></div>
-            <i><s style="color: white;"><a href="{% url 'task-update' task.id %}" id="heighten">{{ task }}</a></s></i>
+            <i><s style="color: white;"><a href="{% url 'task:task-update' task.id %}" id="heighten">{{ task }}</a></s></i>
         </div>
         <a href="{% url 'task:task-delete' task.id %}" align="right" id="delete">&#215;</a>
         {% else %}
