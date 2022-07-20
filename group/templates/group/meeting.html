@@ -1,0 +1,84 @@
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <a href="{% url 'group:add-meeting' %}" style="text-decoration: 0; font-size: 20px;">&plus; Meeting</a>
+    <br> <br>
+    <div class="meeting">
+    <div class="split-left">
+        <h1>Upcoming Meetings</h1>
+        {% for upmeetings in upcoming %}
+        <div class="card" style="background-color: #F0A0A0">
+            <div class="card-body">
+                <div style="color: rgba(224, 76, 76, 0.56); font-size: 20px">
+                    {{ upmeetings.group | upper }}<br>
+                </div>
+                <div style="color: white; font-size: 35px;">
+                    {{ upmeetings }} <br>
+                </div>
+                <div style="color: white; font-size: 20px;">
+                    Date: {{ upmeetings.dates }} from {{ upmeetings.start_time }} to {{ upmeetings.end_time }}<br>
+                </div>
+                <div style="color: white; font-size: 20px;">
+                    Venue: {{ upmeetings.location }} <br>
+                </div>
+                <hr>
+                <div align="right">
+                    <a href="{% url 'group:update-meeting' upmeetings.id %}" class="btn btn-outline-success">Update</a>
+                    <a href="{% url 'group:delete-meeting' upmeetings.id %}" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+
+    <div class="split-right">
+        <h1>Past Meetings</h1>
+        {% for pastmeetings in past %}
+        <div class="card" style="background-color: #F0A0A0">
+            <div class="card-body">
+                <div style="color: rgba(224, 76, 76, 0.56); font-size: 20px">
+                    {{ pastmeetings.group | upper }}<br>
+                </div>
+                <div style="color: white; font-size: 35px;">
+                    {{ pastmeetings }} <br>
+                </div>
+                <div style="color: white; font-size: 20px;">
+                    Date: {{ pastmeetings.dates }} from {{ pastmeetings.start_time }} to {{ pastmeetings.end_time }}<br>
+                </div>
+                <div style="color: white; font-size: 20px;">
+                    Venue: {{ pastmeetings.location }} <br>
+                </div>
+                <hr>
+                <div align="right">
+                    <a href="{% url 'group:update-meeting' pastmeetings.id %}" class="btn btn-outline-success">Update</a>
+                    <a href="{% url 'group:delete-meeting' pastmeetings.id %}" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+
+    <style>
+        .split-left {
+            width: 50%;
+            margin-right: 25px;
+        }
+
+        .split-right {
+            width: 50%;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        .meeting {
+            display: flex;
+        }
+    </style>
+{% endblock %}

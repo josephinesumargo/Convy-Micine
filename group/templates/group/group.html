@@ -23,6 +23,7 @@
             </div>
             <hr>
             <div align="right">
+                <a href="{% url 'group:meeting' group.id %}" class="btn btn-outline-success">Meeting</a>
                 <a href="{% url 'group:announcement' group.id %}" class="btn btn-outline-success">Announcement</a>
                 <a href="{% url 'group:update-group' group.id %}" class="btn btn-outline-success">Update</a>
                 <a href="{% url 'group:delete-group' group.id %}" class="btn btn-outline-danger">Delete</a>

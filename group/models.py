@@ -1,3 +1,4 @@
+import os
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
@@ -26,3 +27,15 @@ class Announcement(models.Model):
 
     def __str__(self):
         return self.title
+
+class FileHandler(models.Model):
+    title = models.CharField(max_length=200)
+    file_upload = models.FileField(upload_to='file_path')
+
+    def __str__(self):
+        return str(self.file_upload)
+
+def file_path(instance, filename):
+    path="groups/"
+    format= "uploaded-" + filename
+    return os.path.join(path, format)

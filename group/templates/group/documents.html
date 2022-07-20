@@ -1,0 +1,24 @@
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+      <div class="mb-3">
+        {{form.file_upload}}
+        {{form.title}}
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    
+</form>
+
+<ul>
+    {% for item in get_files %}
+    <li><a href="{{item.file_upload.url}}" download>Download file</a> </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

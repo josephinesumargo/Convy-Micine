@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.db import models
+from group.models import Group
 
 # Create your models here.
 class Meeting(models.Model):
@@ -19,7 +20,7 @@ class Meeting(models.Model):
             return super().get_queryset().filter(dates__lt=datetime.now().date())
 
     # meeting schedule need to be added to calendars
-    group = models.CharField(max_length=225) # group to be changed to Foreign Key
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, default=1) # group to be changed to Foreign Key
     agenda = models.CharField(max_length=225, blank=False)
     dates = models.DateField()
     start_time = models.TimeField()

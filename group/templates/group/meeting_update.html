@@ -1,0 +1,16 @@
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <h1>Update Your Meeting</h1>
+    <br>
+    <form action="" method=POST enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br/>
+        <input type="submit" value="Update" class="btn btn-secondary">
+    </form>
+
+{% endblock %}
