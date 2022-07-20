@@ -1,4 +1,4 @@
-from datetime import timezone
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -13,3 +13,16 @@ class Group(models.Model):
 
     def __str__(self):
         return self.title + " - " + self.category
+
+class Announcement(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=225, blank=False)
+    body = models.TextField(blank=True)
+    published = models.DateTimeField(default=timezone.now)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, default=1)
+
+    class Meta:
+        ordering = ('-published',)
+
+    def __str__(self):
+        return self.title

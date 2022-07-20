@@ -1,0 +1,47 @@
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <h1>Announcement</h1>
+    <br>
+    <a href="{% url 'group:add-announcement' %}" class="add">&plus; Add Announcement</a>
+    {% for announcement in announcements %}
+    <a href="{% url 'group:update-announcement' announcement.id %}" class="btn btn-outline-success">Update</a>
+    <a href="{% url 'group:delete-announcement' announcement.id %}" class="btn btn-outline-danger">Delete</a>
+    <div class="card">
+        <div class="card-body">
+            <div class="title">{{ announcement.title }}</div> <br>
+            <div class="content">{{ announcement.body }}</div>
+            <div class="time">{{ announcement.published }}</div>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+
+    <style>
+        body {
+            color: white;
+            width: 100%;
+        }
+
+        .card {
+            background-color: #F0A0A0;
+        }
+
+        .title {
+            font-size: 35px;
+        }
+
+        .content {
+            margin-top: -20px;
+            font-size: 20px;
+        }
+
+        .time {
+            float: right;
+        }
+    </style>
+
+{% endblock %}
