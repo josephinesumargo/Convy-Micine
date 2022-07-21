@@ -22,7 +22,7 @@
 {% if user.is_authenticated %}
 <ul class="nav justify-content-end">
     <li class="nav-item">
-        <a class="nav-link" href="#">Dashboard</a>
+        <a class="nav-link" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url 'convy_calendar:calendars' %}">Calendar</a>

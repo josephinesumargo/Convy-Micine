@@ -1,0 +1,110 @@
+{% extends 'authentication/base.html' %}
+
+{% block content %}
+
+    <h1>Welcome back,</h1>
+    <h1>{{user.username | upper}}</h1>
+
+    <br>
+    <div class="dashboard">
+    <div class="announcements">
+    <h2>Announcements</h2>
+    {% for announcements in announcement %}
+    <a href="{% url 'group:all-announcement' %}">
+        <div class="card">
+            <div class="card-body">
+                <div class="Info">
+                    {{ announcements.group }}
+                    <div class="time">{{ announcements.created }}</div>
+                </div>
+                <div class="title">{{ announcements.title }}</div> <br>
+                <div class="content">{{ announcements.content }}</div>
+            </div>
+        </div>
+    </a>
+    <br>
+    {% endfor %}
+    </div>
+    <br> <br>
+
+    <div class="upcomingmeeting">
+    <h2>Upcoming Meetings</h2>
+    {% for meetings in upcomingmeeting %}
+    <a href="{% url 'meeting:update-meeting' meetings.id %}">
+        <div class="card">
+            <div class="card-body">
+                <div class="title">{{ meetings.agenda }}</div> <br>
+                <div class="content">{{ meetings.meeting_date }}</div>
+            </div>
+        </div>
+    </a>
+    <br>
+    {% endfor %}
+    </div>
+
+    <br> <br>
+    <div class="tasks">
+    <h2>Tasks</h2>
+    {% for tasks in taskgroup %}
+    <a href="{% url 'task:task-list' tasks.id %}">
+    <div class="card">
+        <div class="card-body">
+            <div class="title">{{ tasks.title }}</div> <br>
+            <div class="content">Due by {{ tasks.deadline }}</div> 
+        </div>
+    </div>
+    </a>
+    <br>
+    {% endfor %}
+    </div>
+    </div>
+
+    <style>
+        body {
+            color: white;
+            width: 100%;
+        }
+
+        .card {
+            background-color: #F0A0A0;
+        }
+
+        .title {
+            font-size: 35px;
+        }
+        
+        .Info {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .content {
+            margin-top: -20px;
+            font-size: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        .announcements {
+            width: 50%;
+            margin-right: 20px;
+        }
+
+        .upcomingmeeting, .tasks {
+            width: 25%;
+            float: right;
+            margin-right: 20px;
+        }
+
+        .dashboard {
+            display: flex;
+        }
+
+    </style>
+{% endblock %}

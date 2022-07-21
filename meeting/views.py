@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.shortcuts import redirect, render
 
 from meeting.forms import MeetingForm
@@ -5,9 +6,9 @@ from .models import Meeting
 
 # Create your views here.
 def meeting(request):
-    meeting = Meeting.objects.all()
-    upcoming = Meeting.upcomingobjects.all()
-    past = Meeting.pastobjects.all()
+    meeting = Meeting.objects.filter(user__pk = request.user.id)
+    upcoming = meeting.filter(meeting_date__gt = timezone.now())
+    past = meeting.filter(meeting_date__lte = timezone.now())
     return render(request, 'meeting/meeting.html', {
         'meeting': meeting,
         'upcoming': upcoming,

@@ -5,13 +5,11 @@ from .models import Meeting
 class MeetingForm(ModelForm):
     class Meta:
         model = Meeting
-        fields = ('group', 'agenda', 'dates', 'start_time', 'end_time', 'location', 'meeting_link', 'meeting_minutes')
+        fields = ('group', 'agenda', 'meeting_date', 'location', 'meeting_link', 'meeting_minutes')
         labels = {
             'group': 'Group',
             'agenda': 'Agenda',
-            'dates': 'Date',
-            'start_time': 'Start Time',
-            'end_time': 'End Time',
+            'meeting_date': 'Meeting Date',
             'location': 'Location',
             'meeting_link': 'Meeting Link',
             'meeting_minutes': 'Meeting Minutes',
@@ -19,9 +17,7 @@ class MeetingForm(ModelForm):
         widgets = {
             'group': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter Your Organisation Name'}),
             'agenda': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter Your Project Title'}),
-            'dates': forms.DateInput(attrs={'class': 'form-control'}, format="%Y-%m-%d"),
-            'start_time': forms.TimeInput(attrs={'class': 'form-control', 'placeholder':'Choose the deadline date'}, format="%H:%M"),
-            'end_time': forms.TimeInput(attrs={'class': 'form-control', 'placeholder':'Choose the deadline date'}, format="%H:%M"),
+            'meeting_date': forms.DateInput(attrs={"type": "datetime-local", "class": "form-control"}, format="%Y-%m-%dT%H:%M"),
             'location': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter Your Organisation Name'}),
             'meeting_link': forms.URLInput(attrs={'class':'form-control', 'placeholder':'Enter Your Organisation Name'}),
             'meeting_minutes': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter Your Organisation Name'})

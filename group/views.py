@@ -5,7 +5,7 @@ from group.forms import GroupForm, AnnouncementForm
 # meeting
 from meeting.models import Meeting
 from meeting.forms import MeetingForm
-from datetime import datetime
+from django.utils import timezone
 
 # document
 from django.views.generic import TemplateView
@@ -51,7 +51,11 @@ def delete_group(request, group_id):
 	return redirect('group:group')
 
 # announcement
-def announcement(request, group_id):
+def all_announcement(request):
+	announcement = Announcement.objects.all()
+	return render(request, 'group/announcement.html', {'announcement': announcement})
+
+def group_announcement(request, group_id):
 	announcements = Announcement.objects.filter(group__pk = group_id)
 	return render(request, 'group/announcement.html', {'announcements': announcements})
 
@@ -89,15 +93,14 @@ def delete_announcement(request, announcement_id):
 
 # meeting
 def group_meeting(request, group_id):
-	meeting = Meeting.objects.get(group__pk = group_id)
-	upcoming = meeting.filter(dates__gt = datetime.now())
-	past = meeting.filter(dates__lte = datetime.now())
-	return render(request, 'group/meeting.html',
-		{
-			'meeting': meeting,
-			'upcoming': upcoming,
-			'past': past,
-		})
+    meeting = Meeting.objects.filter(group__pk = group_id)
+    upcoming = meeting.filter(meeting_date__gt = timezone.now())
+    past = meeting.filter(meeting_date__lte = timezone.now())
+    return render(request, 'groups/meetings.html', {
+        'meeting': meeting,
+        'upcoming': upcoming,
+        'past': past,
+    })
 
 def add_meeting(request):
 	submitted = False
