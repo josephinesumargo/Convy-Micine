@@ -18,5 +18,13 @@ urlpatterns = [
     path('meeting-add/', views.add_meeting, name="add-meeting"),
     path('meeting-update/<meeting_id>', views.update_meeting, name="update-meeting"),
     path('meeting-delete/<meeting_id>', views.delete_meeting, name="delete-meeting"),
+    path('<group_id>/taskgroup-list/', views.list_taskgroup, name="taskgroup-list"),
+    path('taskgroup-add/', views.add_taskgroup, name="taskgroup-add"),
+    path('taskgroup-update/<taskgroup_id>', views.update_taskgroup, name="taskgroup-update"),
+    path('taskgroup-delete/<taskgroup_id>', views.delete_taskgroup, name="taskgroup-delete"),
+    path('task-list/<int:pk>/', views.TaskList.as_view(), name="task-list"),
+    path('task-add/', views.add_task, name="task-add"),
+    path('task-update/<int:pk>/', views.EditTask.as_view(), name="task-update"),
+    path('task-delete/<int:pk>/', views.DeleteTask.as_view(), name="task-delete"),
     path('documents/', IndexView.as_view(), name='index'),
 ]

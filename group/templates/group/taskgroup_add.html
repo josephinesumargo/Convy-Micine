@@ -1,0 +1,22 @@
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+
+{% block title %} Convy - Group {% endblock title %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'authentication/styles/base.css' %}" type="text/css">
+
+    <h1>Add a taskgroup</h1>
+    <hr>
+
+    <form action="" method=POST>
+        {% csrf_token %}
+
+        {{form.as_p}}
+        
+        <input type="submit" value="Submit" class="btn btn-secondary">
+    </form>
+
+{% endblock %}

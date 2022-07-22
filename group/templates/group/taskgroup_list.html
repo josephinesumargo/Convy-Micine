@@ -2,13 +2,13 @@
 
 {% load static %}
 
-{% block title %} Convy - Task {% endblock title %}
+{% block title %} Convy - Group {% endblock title %}
 
 {% block content %}
 
     <link rel="stylesheet" href="{% static 'authentication/styles/base.css' %}" type="text/css">
 
-    <a href="{% url 'task:taskgroup-add' %}" class="add" style="text-decoration: none; font-size: 20px;">&plus; Task Group</a>
+    <a href="{% url 'group:taskgroup-add' %}" class="add" style="text-decoration: none; font-size: 20px;">&plus; Task Group</a>
     <br> <br>
     {% for taskgroup in taskgroup_list %}
     <div class="card" style="background-color: #F0A0A0">
@@ -24,9 +24,9 @@
             </div>
             <hr>
             <div align="right">
-                <a href="{% url 'task:task-list' taskgroup.id %}" class="btn btn-outline-primary">Task</a>
-                <a href="{% url 'task:taskgroup-update' taskgroup.pk %}" class="btn btn-outline-success">Update</a>
-                <a href="{% url 'task:taskgroup-delete' taskgroup.pk %}" class="btn btn-outline-danger">Delete</a>
+                <a href="{% url 'group:task-list' taskgroup.id %}" class="btn btn-outline-primary">Task</a>
+                <a href="{% url 'group:taskgroup-update' taskgroup.pk %}" class="btn btn-outline-success">Update</a>
+                <a href="{% url 'group:taskgroup-delete' taskgroup.pk %}" class="btn btn-outline-danger">Delete</a>
             </div>
         </div>
     </div>

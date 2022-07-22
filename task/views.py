@@ -9,7 +9,7 @@ from django.views import generic
 
 # Create your views here.
 def list_taskgroup(request):
-    taskgroup_list = TaskGroup.objects.filter(user__pk = request.user.id)
+    taskgroup_list = TaskGroup.objects.filter(group__members__username = request.user)
     return render(request, 'task/taskgroup_list.html', {
         'taskgroup_list': taskgroup_list,
    	})
@@ -50,19 +50,19 @@ class TaskList(generic.ListView):
 	model = Task
 	template_name = 'task/task_list.html'
 
-def list_task(request, taskgroup_id):
-    task_list = Task.objects.filter(taskgroup__pk = taskgroup_id)
-    return render(request, 'task/task_list.html', {
-        'task_list': task_list
-	})
+# def list_task(request, taskgroup_id):
+#     task_list = Task.objects.filter(taskgroup__pk = taskgroup_id)
+#     return render(request, 'task/task_list.html', {
+#         'task_list': task_list
+# 	})
 
 def add_task(request):
 	submitted = False
 	if request.method == "POST":
-		form = TaskForm(request.POST or None, request.FILES or None)
+		form = TaskForm(request.POST, request.FILES)
 		if form.is_valid():
 			task = form.save(commit=False)
-			task.user = request.user
+			task.user = request.user # logged in user
 			task.save()
 			return redirect('task:taskgroup-list')	
 	else:

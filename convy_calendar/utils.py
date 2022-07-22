@@ -1,4 +1,3 @@
-# done
 from calendar import HTMLCalendar
 from convy_calendar.models import Event
 
