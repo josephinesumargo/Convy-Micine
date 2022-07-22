@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block title %} Convy - Task {% endblock title %}
+
 {% block content %}
 
     <link rel="stylesheet" href="{% static 'authentication/styles/base.css' %}" type="text/css">
@@ -21,9 +23,9 @@
         {% else %}
         <div class="task-group">
             <div class="incomplete-task-icon"></div>
-            <a href="{% url 'task:task-update' task.id %}" id="heighten">{{ task }}</a>
+            <a href="{% url 'task:task-update' task.pk %}" id="heighten">{{ task }}</a>
         </div>
-        <a href="{% url 'task:task-delete' task.id %}" align="right" id="delete">&#215;</a>
+        <a href="{% url 'task:task-delete' task.pk %}" align="right" id="delete">&#215;</a>
         {% endif %}
     </div>
     <br>

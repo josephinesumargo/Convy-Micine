@@ -5,7 +5,14 @@ from django.contrib.auth.models import User
 
 # Create your models here
 class Group(models.Model):
-    category = models.CharField(max_length=63, blank=False)
+    CATEGORY = (
+        ('PERSONAL', 'PERSONAL'),
+        ('CCA', 'CCA'),
+        ('MODULE', 'MODULE'),
+        ('PROJECT', 'PROJECT')
+    )
+
+    category = models.CharField(max_length=10, choices=CATEGORY, default='PERS')
     title = models.CharField(max_length=63, blank=False)
     members = models.ManyToManyField(User)
 

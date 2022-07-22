@@ -96,7 +96,7 @@ def group_meeting(request, group_id):
     meeting = Meeting.objects.filter(group__pk = group_id)
     upcoming = meeting.filter(meeting_date__gt = timezone.now())
     past = meeting.filter(meeting_date__lte = timezone.now())
-    return render(request, 'groups/meetings.html', {
+    return render(request, 'group/meeting.html', {
         'meeting': meeting,
         'upcoming': upcoming,
         'past': past,

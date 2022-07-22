@@ -1,8 +1,10 @@
 {% extends 'authentication/base.html' %}
 
+{% block title %} Convy - Group {% endblock title %}
+
 {% block content %}
 
-    <a href="{% url 'group:add-group' %}" class="add">&plus; Add Group</a>
+    <a href="{% url 'group:add-group' %}" class="add" style="text-decoration: none; font-size: 20px;">&plus; Add Group</a>
     <br> <br>
     {% for group in groups %}
     <div class="card" style="background-color: #F0A0A0">

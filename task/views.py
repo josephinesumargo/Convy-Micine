@@ -1,9 +1,11 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse, reverse_lazy
 
 from task.forms import TaskGroupForm, TaskForm
 from task.models import Task, TaskGroup
+
+from django.views import generic
 
 # Create your views here.
 def list_taskgroup(request):
@@ -44,6 +46,9 @@ def delete_taskgroup(request, taskgroup_id):
 	taskgroup.delete()
 	return redirect('task:taskgroup-list')
 
+class TaskList(generic.ListView):
+	model = Task
+	template_name = 'task/task_list.html'
 
 def list_task(request, taskgroup_id):
     task_list = Task.objects.filter(taskgroup__pk = taskgroup_id)
@@ -67,18 +72,13 @@ def add_task(request):
 
 	return render(request, 'task/task_add.html', {'form':form, 'submitted':submitted})
 
-def update_task(request, task_id):
-	task = Task.objects.get(pk=task_id)
-	form = TaskForm(request.POST or None, request.FILES or None, instance=task)
-	if form.is_valid():
-		form.save()
-		return redirect('task:taskgroup-list')
+class EditTask(generic.UpdateView):
+	model = Task
+	fields = ["taskgroup", "title", "complete"]
+	template_name = "task/task_update.html"	
+	success_url = reverse_lazy("task:taskgroup-list")
 
-	return render(request, 'task/task_update.html', 
-		{'task': task,
-		'form':form})
-
-def delete_task(request, task_id):
-	task = Task.objects.get(pk=task_id)
-	task.delete()
-	return redirect('task:taskgroup-list')
+class DeleteTask(generic.DeleteView):
+    model = Task
+    template_name = "task/task_delete.html"
+    success_url = reverse_lazy("task:taskgroup-list")
