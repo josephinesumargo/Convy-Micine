@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 
 class BaseTest(TestCase):
     def setUp(self):
-        self.home_url = reverse('home')
-        self.register_url=reverse('signup')
-        self.login_url=reverse('signin')
+        self.home_url = reverse('authentication:home')
+        self.register_url=reverse('authentication:signup')
+        self.login_url=reverse('authentication:signin')
         self.user={
             'username':'username',
             'password':'password',
