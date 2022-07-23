@@ -6,10 +6,10 @@ from task.models import TaskGroup
 
 # Create your views here.
 def dashboard(request):
-    announcement = Announcement.objects.filter(user__pk = request.user.id)
-    meeting = Meeting.objects.filter(user__pk = request.user.id)
+    announcement = Announcement.objects.filter(group__members__username=request.user)
+    meeting = Meeting.objects.filter(group__members__username=request.user)
     upcomingmeeting = meeting.filter(meeting_date__gt = timezone.now())
-    taskgroup = TaskGroup.objects.filter(user__pk = request.user.id)
+    taskgroup = TaskGroup.objects.filter(group__members__username=request.user)
     return render(request, 'dashboard/dashboard.html', {
         'announcement': announcement,
         'upcomingmeeting': upcomingmeeting,

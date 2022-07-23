@@ -2,11 +2,13 @@
 
 {% load static %}
 
+{% block title %} Convy - Announcement {% endblock title %}
+
 {% block content %}
 
     <h1>Announcement</h1>
     <br>
-    <a href="{% url 'group:add-announcement' %}" class="add">&plus; Add Announcement</a>
+    <a href="{% url 'group:add-announcement' %}" class="add" style="text-decoration: 0; font-size: 20px;">&plus; Add Announcement</a>
     {% for announcement in announcements %}
     <a href="{% url 'group:update-announcement' announcement.id %}" class="btn btn-outline-success">Update</a>
     <a href="{% url 'group:delete-announcement' announcement.id %}" class="btn btn-outline-danger">Delete</a>

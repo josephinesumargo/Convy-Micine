@@ -5,14 +5,14 @@ from .models import Task, TaskGroup
 class TaskGroupForm(ModelForm):
     class Meta:
         model = TaskGroup
-        fields = ('organisation', 'title', 'deadline',)
+        fields = ('group', 'title', 'deadline',)
         labels = {
-            'organisation': 'Organisation',
+            'group': 'Group',
             'title': 'Title',
             'deadline': 'Deadline',
         }
         widgets = {
-            'organisation': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter Your Organisation Name'}),
+            'group': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter Your Organisation Name'}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter Your Project Title'}),
             'deadline': forms.DateInput(attrs={'type': 'datetime-local', 'class': 'form-control', 'placeholder':'Choose the deadline date'}, format="%Y-%m-%dT%H:%M"),
         }

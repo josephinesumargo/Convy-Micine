@@ -1,8 +1,6 @@
 {% extends 'authentication/base.html' %}
 
-{% block title %}
-Event Details
-{% endblock %}
+{% block title %} Convy - Event Details {% endblock %}
 
 {% block content %}
     <div class="container">
@@ -17,9 +15,15 @@ Event Details
             <h1>Event Details</h1>
             <hr>
             <h3 style="color: white;">Event Name: {{ event.title }}</h3>
-            <p>From <span>{{ event.start_time }}</span> To <span>{{ event.end_time }}</span></p>
+            <p>From <span>{{ event.start_time }}</span> to <span>{{ event.end_time }}</span></p>
             <h5 style="color: white;">Description:</h5>
             <p>{{ event.description }}</p>
         </div>
     </div>
+
+    <style>
+        .btn:hover {
+            color: white;
+        }
+    </style>
 {% endblock %}

@@ -2,22 +2,21 @@
 
 {% load static %}
 
-{% block title %} Convy - Task {% endblock title %}
+{% block title %} Convy - Group {% endblock title %}
 
 {% block content %}
 
     <link rel="stylesheet" href="{% static 'authentication/styles/base.css' %}" type="text/css">
 
-    <h1>Add A Task</h1>
+    <h1>Add a taskgroup</h1>
     <hr>
+
     <form action="" method=POST>
         {% csrf_token %}
 
         {{form.as_p}}
-
+        
         <input type="submit" value="Submit" class="btn btn-secondary">
     </form>
-    <br>
-    <a href="{% url 'task:taskgroup-add' %}">Go Back</a> 
 
 {% endblock %}

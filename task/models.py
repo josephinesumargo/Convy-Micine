@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from group.models import Group
 
 # Create your models here.
 class TaskGroup(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank=True)
-    organisation = models.CharField(max_length=200)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, default=1)
     title = models.CharField(max_length=200)
     deadline = models.DateTimeField(null = True, blank = True)
 

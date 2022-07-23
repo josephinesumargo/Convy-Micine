@@ -1,4 +1,3 @@
-# done
 from calendar import HTMLCalendar
 from convy_calendar.models import Event
 
@@ -16,6 +15,8 @@ class Calendar(HTMLCalendar):
         d = ""
         for event in events_per_day:
             d += f"<li> {event.get_html_url} </li>"
+
+        # for (int i = day, i == event.end_time.day, i++)
         if day != 0:
             return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
         return "<td></td>"

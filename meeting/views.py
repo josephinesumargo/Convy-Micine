@@ -6,7 +6,7 @@ from .models import Meeting
 
 # Create your views here.
 def meeting(request):
-    meeting = Meeting.objects.filter(user__pk = request.user.id)
+    meeting = Meeting.objects.filter(group__members__username = request.user)
     upcoming = meeting.filter(meeting_date__gt = timezone.now())
     past = meeting.filter(meeting_date__lte = timezone.now())
     return render(request, 'meeting/meeting.html', {
