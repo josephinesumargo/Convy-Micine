@@ -232,12 +232,13 @@ class IndexView(TemplateView):
             form = FileHandlerForm(request.POST, request.FILES)
             
             if form.is_valid():
-                FileHandler.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
-
-                return redirect('group:index')
+                FileHandler.objects.get_or_create(
+					file_upload=form.cleaned_data.get('file_upload'),
+					title=form.cleaned_data.get('title'))
+                return redirect('group:group')
             else:
                 context['form'] = form
         else:
             context['form'] = form
 
-        return redirect('group:index')
+        return redirect('group:group')

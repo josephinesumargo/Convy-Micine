@@ -6,20 +6,24 @@
 
 {% block content %}
 
+<h1>Add Documents</h1>
+<hr>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
       <div class="mb-3">
-        {{form.file_upload}}
-        {{form.title}}
+        {{form.as_p}}
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-    
 </form>
+<br> <br>
 
+<h1>Download Documents</h1>
+<hr>
+<p>Click the files to download</p>
 <ul>
     {% for item in get_files %}
-    <li><a href="{{item.file_upload.url}}" download>Download file</a> </li>
+      <li><a href="{{item.file_upload.url}}" download>{{item.title}}</a></li>
     {% endfor %}
 </ul>
 

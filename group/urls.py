@@ -26,5 +26,5 @@ urlpatterns = [
     path('task-add/', views.add_task, name="task-add"),
     path('task-update/<int:pk>/', views.EditTask.as_view(), name="task-update"),
     path('task-delete/<int:pk>/', views.DeleteTask.as_view(), name="task-delete"),
-    path('documents/', IndexView.as_view(), name='index'),
+    path('documents/<group_id>/', IndexView.as_view(), name='index'),
 ]

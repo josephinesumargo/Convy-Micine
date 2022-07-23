@@ -18,4 +18,4 @@ class FileHandlerForm(forms.ModelForm):
     
     class Meta():
         model = FileHandler
-        fields = ('file_upload', 'title')
+        fields = ('title', 'file_upload',)

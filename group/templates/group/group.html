@@ -25,6 +25,7 @@
             </div>
             <hr>
             <div align="right">
+                <a href="{% url 'group:index' group.id %}" class="btn btn-outline-success">Documents</a>
                 <a href="{% url 'group:taskgroup-list' group.id %}" class="btn btn-outline-success">Task</a>
                 <a href="{% url 'group:meeting' group.id %}" class="btn btn-outline-success">Meeting</a>
                 <a href="{% url 'group:announcement' group.id %}" class="btn btn-outline-success">Announcement</a>
