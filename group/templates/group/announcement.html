@@ -7,16 +7,22 @@
 {% block content %}
 
     <h1>Announcement</h1>
-    <br>
+    <hr>
     <a href="{% url 'group:add-announcement' %}" class="add" style="text-decoration: 0; font-size: 20px;">&plus; Add Announcement</a>
+    <br>
     {% for announcement in announcements %}
-    <a href="{% url 'group:update-announcement' announcement.id %}" class="btn btn-outline-success">Update</a>
-    <a href="{% url 'group:delete-announcement' announcement.id %}" class="btn btn-outline-danger">Delete</a>
     <div class="card">
         <div class="card-body">
-            <div class="title">{{ announcement.title }}</div> <br>
-            <div class="content">{{ announcement.body }}</div>
-            <div class="time">{{ announcement.published }}</div>
+            <div class="announcement">
+                <div class="title">{{ announcement.title }}</div> <br>
+                <div class="content">{{ announcement.body }}</div>
+                <div class="time">{{ announcement.published }}</div> <br>
+                <hr>
+                <div class="update-delete">
+                    <a href="{% url 'group:update-announcement' announcement.id %}" class="btn">Update</a>
+                    <a href="{% url 'group:delete-announcement' announcement.id %}" class="btn">Delete</a>
+                </div>
+            </div>
         </div>
     </div>
     <br>
@@ -30,6 +36,7 @@
 
         .card {
             background-color: #F0A0A0;
+            display: flex;
         }
 
         .title {
@@ -42,6 +49,10 @@
         }
 
         .time {
+            float: right;
+        }
+
+        .update-delete {
             float: right;
         }
     </style>

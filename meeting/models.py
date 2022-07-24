@@ -11,7 +11,7 @@ class Meeting(models.Model):
     agenda = models.CharField(max_length=225, blank=False)
     meeting_date = models.DateTimeField()
     location = models.CharField(max_length=225, blank=True)
-    meeting_link = models.URLField(max_length=225, null=True)
+    meeting_link = models.URLField(max_length=225, blank=True)
     meeting_minutes = models.TextField(blank=True)
 
     def __str__(self):

@@ -19,6 +19,12 @@ from .models import FileHandler
 from .forms import FileHandlerForm
 
 # Create your views here.
+def all_group(request):
+	groups = Group.objects.all()
+	return render(request, 'group/all_group.html', {
+		'groups': groups,
+	})
+
 def group(request):
     groups = Group.objects.filter(members__username=request.user)
     return render(request, 'group/group.html', {
@@ -155,7 +161,7 @@ def add_taskgroup(request):
 			taskgroup = form.save(commit=False)
 			taskgroup.user = request.user # logged in user
 			taskgroup.save()
-			return redirect('group:taskgroup-list')	
+			return redirect('group:group')	
 	else:
 		form = TaskGroupForm
 		if 'submitted' in request.GET:
@@ -168,7 +174,7 @@ def update_taskgroup(request, taskgroup_id):
 	form = TaskGroupForm(request.POST or None, request.FILES or None, instance=taskgroup)
 	if form.is_valid():
 		form.save()
-		return redirect('group:taskgroup-list')
+		return redirect('group:group')
 
 	return render(request, 'group/taskgroup_update.html', 
 		{'taskgroup': taskgroup,
@@ -177,7 +183,7 @@ def update_taskgroup(request, taskgroup_id):
 def delete_taskgroup(request, taskgroup_id):
 	taskgroup = TaskGroup.objects.get(pk=taskgroup_id)
 	taskgroup.delete()
-	return redirect('group:taskgroup-list')
+	return redirect('group:group')
 
 class TaskList(generic.ListView):
 	model = Task
@@ -197,7 +203,7 @@ def add_task(request):
 			task = form.save(commit=False)
 			task.user = request.user # logged in user
 			task.save()
-			return redirect('group:taskgroup-list')	
+			return redirect('group:group')	
 	else:
 		form = TaskForm
 		if 'submitted' in request.GET:
@@ -209,12 +215,12 @@ class EditTask(generic.UpdateView):
 	model = Task
 	fields = ["taskgroup", "title", "complete"]
 	template_name = "group/task_update.html"	
-	success_url = reverse_lazy("group:taskgroup-list")
+	success_url = reverse_lazy("group:group")
 
 class DeleteTask(generic.DeleteView):
     model = Task
     template_name = "group/task_delete.html"
-    success_url = reverse_lazy("group:taskgroup-list")
+    success_url = reverse_lazy("group:group")
 
 # documents
 class IndexView(TemplateView):

@@ -14,7 +14,7 @@ class Group(models.Model):
 
     category = models.CharField(max_length=10, choices=CATEGORY, default='PERS')
     title = models.CharField(max_length=63, blank=False)
-    members = models.ManyToManyField(User)
+    members = models.ManyToManyField(User, blank=True)
 
     class Meta:
         ordering = ('title',)
