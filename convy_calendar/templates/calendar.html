@@ -16,8 +16,8 @@
     <div class="clearfix">
         <a class="btn" href="{% url 'convy_calendar:event_new' %}"> + New Event </a>
         <div class="link">
-            <a id="link1" href="{% url 'convy_calendar:calendars' %}?{{ prev_month }}"> << Previous Month </a>
-            <a id="link2" href="{% url 'convy_calendar:calendars' %}?{{ next_month }} "> Next Month >> </a>
+            <a id="link1" href="{% url 'convy_calendar:calendars' %}?{{ next_month }}"> Next Month >> </a>
+            <a id="link2" href="{% url 'convy_calendar:calendars' %}?{{ prev_month }} "> << Previous Month </a>
         </div>
     </div>
 </div>
